@@ -6,7 +6,7 @@
   "author": "assembleX",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/server.ts",
+    "dev": "nodemon src/server.ts",
     "lint": "tsc --noEmit --skipLibCheck && eslint \"**/*.{js,ts}\" --quiet --fix"
   },
   "devDependencies": {
@@ -18,7 +18,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
-    "ts-node-dev": "^1.1.6",
+    "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
   "dependencies": {
