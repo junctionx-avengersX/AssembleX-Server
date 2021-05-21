@@ -5,6 +5,7 @@ import options from './config/swagger'
 
 import hello from './routes/hello'
 import getGilbertsHandler from './routes/gilberts'
+import { errors } from 'celebrate'
 
 const app = express()
 
@@ -21,9 +22,12 @@ app.set('port', process.env.PORT || 3000)
 const router_ = Router()
 router_.use('/api-docs', swaggerUi.serve)
 router_.use('/api/hello', hello)
-router_.use('/api/gilberts', getGilbertsHandler)
+
+// '/api/gilberts'
+router_.use(getGilbertsHandler)
 
 app.use(router_)
+app.use(errors())
 
 app.listen(app.get('port'), () => {
   console.log(
