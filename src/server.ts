@@ -1,8 +1,12 @@
 import express from 'express'
+import { createRestRouter } from './rest'
 
 const app = express()
 
 app.set('port', process.env.PORT || 3000)
+
+const router = createRestRouter()
+app.use(router)
 
 app.listen(app.get('port'), () => {
   console.log(
