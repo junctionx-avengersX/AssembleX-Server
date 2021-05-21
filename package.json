@@ -29,6 +29,7 @@
     "express-session": "^1.17.2",
     "inversify": "^4.13.0",
     "inversify-express-utils": "^4.2.2",
+    "qs": "^6.10.1",
     "reflect-metadata": "^0.1.13",
     "swagger-express-ts": "^1.1.0",
     "swagger-jsdoc": "*",
