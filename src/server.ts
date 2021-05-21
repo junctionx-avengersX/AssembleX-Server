@@ -1,1 +1,3 @@
-console.log('hello world')
+import { test } from './module'
+
+console.log(`${test} hello world`)

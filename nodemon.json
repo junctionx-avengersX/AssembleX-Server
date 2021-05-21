@@ -1,9 +1,0 @@
-{
-  "watch": ["src"],
-  "ext": "ts",
-  "ignore": [],
-  "exec": "babel-node src/server.ts",
-  "env": {
-    "BABEL_DISABLE_CACHE": 1
-  }
-}

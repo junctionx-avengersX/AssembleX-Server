@@ -2,4 +2,5 @@
 
 ## run project
 
-- in development: `yarn dev`
+- `yarn install`
+- `yarn dev`
