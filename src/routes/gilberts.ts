@@ -4,8 +4,8 @@ import Gilbert from '../models/Gilbert'
 /**
  * @swagger
  * tags:
- *   name: Gilbert
- *   description: Gilbert management
+ *   name: Gilberts
+ *   description: Get Gilbert List
  */
 const router: Router = Router()
 
@@ -13,11 +13,11 @@ const router: Router = Router()
  * @swagger
  *  /api/gilbert:
  *    get:
- *      summary: Select Gilbert
+ *      summary: Get Gilberts
  *      tags: [Gilbert]
  *      responses:
  *        "200":
- *          description: A gilbert schema
+ *          description: gilberts schema
  *          content:
  *            application/json:
  *              schema:

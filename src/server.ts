@@ -1,13 +1,10 @@
 import express, { Router } from 'express'
-import { createRestRouter } from './rest'
-
-import bodyParser from 'body-parser'
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import options from './config/swagger'
 
 import hello from './routes/hello'
-import gilbert from './routes/gilbert'
+import getGilbertsHandler from './routes/gilberts'
 
 const app = express()
 
@@ -24,9 +21,8 @@ app.set('port', process.env.PORT || 3000)
 const router_ = Router()
 router_.use('/api-docs', swaggerUi.serve)
 router_.use('/api/hello', hello)
-router_.use('/api/gilbert', gilbert)
+router_.use('/api/gilberts', getGilbertsHandler)
 
-// const router = createRestRouter()
 app.use(router_)
 
 app.listen(app.get('port'), () => {
