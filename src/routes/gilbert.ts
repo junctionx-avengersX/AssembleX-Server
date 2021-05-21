@@ -1,5 +1,4 @@
 import { Router, Response } from 'express'
-import Gilbert from '../models/Gilbert'
 
 /**
  * @swagger
@@ -22,9 +21,16 @@ const router: Router = Router()
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/Gilbert'
+ *
  */
 router.get('/', (req, res: Response) => {
-  res.json(new Gilbert('병학', 'byunghak@gmail.com'))
+  const gilbert: Gilbert = {
+    id: 'something like id',
+    name: '병학',
+    profileUrl: '',
+    rating: 0,
+  }
+  res.json(gilbert)
 })
 
 export default router

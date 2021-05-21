@@ -8,6 +8,7 @@ import options from './config/swagger'
 
 import hello from './routes/hello'
 import gilbert from './routes/gilbert'
+import maps from './routes/map'
 
 const app = express()
 
@@ -25,6 +26,7 @@ const router_ = Router()
 router_.use('/api-docs', swaggerUi.serve)
 router_.use('/api/hello', hello)
 router_.use('/api/gilbert', gilbert)
+router_.use('/api/maps', maps)
 
 // const router = createRestRouter()
 app.use(router_)
