@@ -1,0 +1,6 @@
+# /node_modules/* in the project root is ignored by default
+dist/*
+# data definition files
+**/*.d.ts
+# node_modules
+node_modules/*

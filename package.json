@@ -1,8 +1,26 @@
 {
-  "name": "assembleX-server",
+  "name": "gilbert-server",
   "version": "1.0.0",
   "main": "index.ts",
   "repository": "https://github.com/junctionx-avengersX/AssembleX-Server",
   "author": "assembleX",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node --files src/index.ts",
+    "lint": "tsc --noEmit --skipLibCheck && eslint \"**/*.{js,ts}\" --quiet --fix"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.14.0",
+    "@babel/preset-typescript": "^7.13.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.25.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {}
 }
+
