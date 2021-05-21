@@ -3,3 +3,6 @@ node_modules
 
 # log files
 yarn-error.log
+
+# build file
+dist
