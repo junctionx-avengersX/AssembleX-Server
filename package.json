@@ -1,0 +1,8 @@
+{
+  "name": "assembleX-server",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "https://github.com/junctionx-avengersX/AssembleX-Server",
+  "author": "assembleX",
+  "license": "MIT"
+}
