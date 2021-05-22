@@ -13,4 +13,5 @@ interface User {
 
 interface Gilbert extends User {
   rating: number
+  guideCount: number
 }
