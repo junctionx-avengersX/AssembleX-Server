@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { urlencoded } from 'express'
 
 async function getCoordinate(address: string): Promise<CoordinateRes> {
   console.log(address)
@@ -14,7 +13,7 @@ async function getCoordinate(address: string): Promise<CoordinateRes> {
     },
   }
 
-  let result: MapsApiRes = {
+  const result: MapsApiRes = {
     status: '',
     errorMessage: '',
     meta: Object,
@@ -53,7 +52,7 @@ async function getAddress(query: string) {
     url: url,
   }
 
-  let res = {
+  const res = {
     place: null,
   }
 
