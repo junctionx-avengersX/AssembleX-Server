@@ -1,6 +1,5 @@
 import express, { Router } from 'express'
 import cors from 'cors'
-import { createRestRouter } from './rest'
 
 import bodyParser from 'body-parser'
 import swaggerJsdoc from 'swagger-jsdoc'
