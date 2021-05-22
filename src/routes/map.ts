@@ -1,4 +1,4 @@
-import { getCoordinate } from '../apis/naverMaps'
+import { getCoordinate, getAddress } from '../apis/naverMaps'
 import { Router, Response } from 'express'
 
 /**
@@ -36,6 +36,31 @@ router.get('/:address', async (req, res: Response) => {
   const coordinate: CoordinateRes = await getCoordinate(req.params.address)
   if (coordinate === null) res.json('Not Found')
   else res.json(coordinate)
+})
+
+/**
+ * @swagger
+ *  /api/maps/search/{query}:
+ *    get:
+ *      summary: 주소 검색
+ *      parameters:
+ *       - in: path
+ *         name: query
+ *         required: true
+ *         description: 쿼리로 주소 검색
+ *         schema:
+ *           type: string
+ *      tags: [Maps]
+ *      responses:
+ *        "200":
+ *          description: A Maps schema
+ *          content:
+ *            application/json
+ *
+ */
+router.get('/search/:query', async (req, res: Response) => {
+  const res_ = await getAddress(req.params.query)
+  res.json(res_)
 })
 
 export default router

@@ -1,4 +1,5 @@
 import express, { Router } from 'express'
+import cors from 'cors'
 import { createRestRouter } from './rest'
 
 import bodyParser from 'body-parser'
@@ -14,6 +15,7 @@ const app = express()
 
 const specs = swaggerJsdoc(options)
 
+app.use(cors())
 app.use(
   '/api-docs',
   swaggerUi.serve,

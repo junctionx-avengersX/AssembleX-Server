@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import { urlencoded } from 'express'
 
 async function getCoordinate(address: string): Promise<CoordinateRes> {
   console.log(address)
@@ -43,4 +44,30 @@ async function getCoordinate(address: string): Promise<CoordinateRes> {
   return coordinate
 }
 
-export { getCoordinate }
+async function getAddress(query: string) {
+  const url = `https://map.naver.com/v5/api/instantSearch?lang=ko&caller=pcweb&types=place,address,bus&coords=37.526575025997396,127.10793256759645&query=${encodeURI(
+    query,
+  )}`
+  const config: AxiosRequestConfig = {
+    method: 'get',
+    url: url,
+  }
+
+  let res = {
+    place: null,
+  }
+
+  await axios(config)
+    .then(function (response) {
+      console.log(response.data.place)
+      console.log(response.data.ac)
+      res.place = response.data.place
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
+
+  return res
+}
+
+export { getCoordinate, getAddress }
