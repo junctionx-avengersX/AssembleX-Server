@@ -31,11 +31,3 @@ db.get('posts')
 db.set('user.name', 'typicode')
   .write()
 ```
-
-## naming convention suggestion
-
-- file: {resource}{Behavior}
-  - is for file search
-  - ex) `gilbertCreate.ts`
-- function: {behavior}{Resource}
-  - ex) `const createGilbert = () => {}`
