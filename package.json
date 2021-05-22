@@ -5,6 +5,9 @@
   "repository": "https://github.com/junctionx-avengersX/AssembleX-Server",
   "author": "assembleX",
   "license": "MIT",
+  "engines": {
+    "node": "^12.20.0"
+  },
   "scripts": {
     "dev": "nodemon -e yml,ts --files src/server.ts",
     "build": "tsc",
@@ -27,14 +30,15 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
-    "celebrate": "^14.0.0",
     "axios": "^0.21.1",
+    "celebrate": "^14.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "faker": "^5.5.3",
     "inversify": "^4.13.0",
     "inversify-express-utils": "^4.2.2",
+    "lowdb": "^2.0.3",
     "reflect-metadata": "^0.1.13",
     "swagger-express-ts": "^1.1.0",
     "swagger-jsdoc": "*",
