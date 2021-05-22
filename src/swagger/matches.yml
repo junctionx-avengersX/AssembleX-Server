@@ -87,7 +87,14 @@ components:
             id:
               type: string
             estimatedTime:
-              type: string
+              type: object
+              properties:
+                time:
+                  type: number
+                unit:
+                  type: string
+                  enum:
+                    - min
             status:
               type: string
               enum:

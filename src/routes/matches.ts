@@ -59,6 +59,7 @@ router.post(
     }),
   }),
   async (req: Request, res: Response) => {
+    res.header('Content-Type', 'application/json')
     const match = await cancelMatch(req.params.match_id, req.context)
     await cancelGuideByMatchId(match.id, req.context)
     res.json(match)
