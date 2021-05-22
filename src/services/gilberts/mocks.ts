@@ -20,6 +20,7 @@ interface GilbertInput {
   guideCount?: number
   volunteerCount?: number
   introduction?: string
+  verified?: boolean
 }
 
 const DEFAULT_MAX_COST = 3000
@@ -38,4 +39,5 @@ export const generateGilbert = (input?: GilbertInput) => ({
   guideCount: input?.guideCount || faker.datatype.number(50),
   volunteerCount: input?.volunteerCount || faker.datatype.number(5),
   introduction: input?.introduction || faker.random.arrayElement(introductions),
+  verified: input.verified ?? faker.datatype.boolean(),
 })

@@ -37,13 +37,26 @@ interface Gilbert extends User {
   guideCount?: number
   volunteerCount?: number
   introduction: string
+  verified: boolean
+}
+
+interface GuideStep {
+  base: string
+  destination: string
+  estimatedTime: string // hour and minutes
+  transportation: Transportation
+  isPassed: boolean
 }
 
 interface Guide {
   id: string
   status: GuideStatus
-  viewerId: string
-  gilbertId: string
-  createdAt: Date
+  guideSteps: GuideStep[]
+  currentStep: GuideStep
   arrivedAt?: Date
+}
+
+interface Match {
+  status: MatchStatus
+  estimatedTime: string // hour and minutes
 }
