@@ -19,8 +19,11 @@ interface MatchSchema extends Match {
 }
 
 interface GuideSchema extends Guide {
+  base: string
+  destination: string
   viewerId: string
   gilbertId: string
+  matchId: string
   createdAt: Date
 }
 

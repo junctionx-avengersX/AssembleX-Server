@@ -1,6 +1,6 @@
 import { DatabaseSchema } from 'db/schema'
 import low from 'lowdb'
-import { Context } from '../../src/types'
+import { Context } from '../../src/context'
 
 declare global {
   namespace Express {
