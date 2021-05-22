@@ -27,9 +27,10 @@ const getGilberts = (input: GetGilbertsInput): GilbertUser[] => {
       delay: faker.datatype.number({ min: 0, max: 3, precision: 0.01 }), // delayed time
       cost: faker.datatype.number({
         min: 0,
-        max: input.maxCost ?? DEFAULT_MAX_COST,
+        max: input.maxCost ?? DEFAULT_MAX_COST, // TODO: if create DB, filter with maxCost
         precision: 100,
       }),
+      guideCount: faker.datatype.number(50),
     })
   }
 
