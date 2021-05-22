@@ -45,12 +45,14 @@ interface GuideStep {
   destination: string
   estimatedTime: string // hour and minutes
   transportation: Transportation
-  isPassed: boolean
 }
 
 interface Guide {
   id: string
+  base: string
+  destination: string
   status: GuideStatus
+  transportations: Transportation[]
   guideSteps?: GuideStep[]
   currentStep?: GuideStep
   arrivedAt?: Date

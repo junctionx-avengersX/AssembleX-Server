@@ -20,9 +20,11 @@ const createGuide = async (input: CreateGuideInput, context: Context) => {
       createdAt: new Date(),
       base: input.base,
       destination: input.destination,
+      transportations: input.transportations,
       viewerId: context.viewerId,
       gilbertId: input.gilbertId,
       matchId: input.matchId,
+      reservedAt: input.reservedTime,
     })
     .write()
 
