@@ -2,8 +2,8 @@
 
 ## run project
 
-- `yarn install`
-- `yarn dev`
+- `npm install`
+- `npm run dev`
 
 ## naming convention
 
