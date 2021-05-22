@@ -1,3 +1,4 @@
+import { UserType } from '../db/schema'
 import { Router, Response } from 'express'
 
 /**
@@ -20,7 +21,17 @@ const router: Router = Router()
  *          content:
  *            application/json
  */
-router.get('/', (req, res: Response) => {
+router.get('/api/hello', (req, res: Response) => {
+  req.db
+    .get('users')
+    .push({
+      id: 'sample',
+      name: 'hi',
+      userType: UserType.NORMAL,
+      profileUrl: 'sisi',
+    })
+    .write()
+
   res.json('hello world')
 })
 

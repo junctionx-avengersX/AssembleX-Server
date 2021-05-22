@@ -1,8 +1,6 @@
 import express, { Router } from 'express'
+import { errors } from 'celebrate'
 import cors from 'cors'
-import { createRestRouter } from './rest'
-
-import bodyParser from 'body-parser'
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import options from './config/swagger'
@@ -10,7 +8,7 @@ import options from './config/swagger'
 import hello from './routes/hello'
 import maps from './routes/map'
 import gilbertsRouter from './routes/gilberts'
-import { errors } from 'celebrate'
+import { initDb } from './db/init'
 
 const app = express()
 
@@ -25,9 +23,16 @@ app.use(
 
 app.set('port', process.env.PORT || 3000)
 
+// add 'db' instance to request context, so use anywhere in router
+app.use((req, res, next) => {
+  const db = initDb()
+  req.db = db
+  next()
+})
+
 const router_ = Router()
 router_.use('/api-docs', swaggerUi.serve)
-router_.use('/api/hello', hello)
+router_.use(hello)
 router_.use('/api/maps', maps)
 
 // '/api/gilberts'
