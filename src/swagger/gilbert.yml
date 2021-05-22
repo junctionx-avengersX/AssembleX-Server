@@ -1,0 +1,104 @@
+paths:
+  /api/gilberts:
+    get:
+      parameters:
+        - in: path
+          name: base
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: destination
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: reserved_time
+          schema:
+            type: string
+          description: must be datetime string ex) Sat May 22 2021 13:05:41
+        - in: path
+          name: transportations
+          type: array
+          items:
+            type: string
+            enum:
+              - BUS
+              - SUBWAY
+              - WALK
+              - TAXI
+          required: true
+          description: refer Transportation enum ex) [BUS, SUBWAY]
+      summary: Get Gilberts
+      tags: [Gilbert]
+      responses:
+        '200':
+          description: success to get gilberts!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gilberts'
+        '400':
+          description: missing params or got wrong parameter type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+components:
+  tags:
+  name: Gilberts
+  description: Get Gilbert List
+  schemas:
+    Gilbert:
+      type: object
+      required:
+        - id
+        - name
+        - profileUrl
+        - rating
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        profileUrl:
+          type: string
+        rating:
+          type: integer
+          minimum: 0
+          maximum: 5
+        delay:
+          type: number
+          format: float
+          minimum: 0
+          maximum: 3
+      example:
+        id: 3cd2696f-26c7-4e3e-b39f-47e7c65a0cee
+        name: Favian Volkman
+        profileUrl: https://cdn.fakercloud.com/avatars/sweetdelisa_128.jpg
+        rating: 1
+        delay: 2.1
+    Gilberts:
+      type: array
+      items:
+        $ref: '#/components/schemas/Gilbert'
+    BadRequest:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: boolean
+        message:
+          type: string
+      example:
+        error: true
+        message: reserved_time should be date string
+    Transportation:
+      type: string
+      enum:
+        - BUS
+        - TAXI
+        - WALK
+        - SUBWAY
