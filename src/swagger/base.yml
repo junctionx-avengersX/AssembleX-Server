@@ -1,0 +1,32 @@
+components:
+  tags:
+  name: Request
+  description: Handle Request
+  schemas:
+    BadRequest:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: boolean
+        message:
+          type: string
+        validation:
+          type: object
+          properties:
+            query:
+              type: object
+              properties:
+                source:
+                  type: string
+                keys:
+                  type: array
+                  items:
+                    type: string
+                message:
+                  type: string
+      example:
+        error: true
+        message: reserved_time should be date string

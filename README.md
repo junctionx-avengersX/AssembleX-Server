@@ -5,6 +5,14 @@
 - `npm install`
 - `npm run dev`
 
+## naming convention
+
+- file: {resource}{Behavior}
+  - is for file search
+  - ex) `gilbertCreate.ts`
+- function: {behavior}{Resource}
+  - ex) `const createGilbert = () => {}`
+
 ## lowdb
 
 - you can find sample code in hello router
@@ -23,3 +31,11 @@ db.get('posts')
 db.set('user.name', 'typicode')
   .write()
 ```
+
+## naming convention suggestion
+
+- file: {resource}{Behavior}
+  - is for file search
+  - ex) `gilbertCreate.ts`
+- function: {behavior}{Resource}
+  - ex) `const createGilbert = () => {}`
