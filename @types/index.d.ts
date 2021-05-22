@@ -39,12 +39,6 @@ interface Gilbert extends User {
   introduction: string
 }
 
-enum GuideStatus {
-  START = 'START',
-  WAIT = 'WAIT',
-  ARRIVE = 'ARRIVE',
-}
-
 interface Guide {
   id: string
   status: GuideStatus

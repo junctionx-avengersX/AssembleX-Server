@@ -104,19 +104,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Gilbert'
-    BadRequest:
-      type: object
-      required:
-        - error
-        - message
-      properties:
-        error:
-          type: boolean
-        message:
-          type: string
-      example:
-        error: true
-        message: reserved_time should be date string
     Transportation:
       type: string
       enum:
