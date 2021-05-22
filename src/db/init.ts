@@ -21,7 +21,10 @@ const createFile = (dbPath: string) => {
 
 export const initDb = () => {
   const dbPath = join(__dirname, 'data.json')
-  createFile(dbPath)
+  const dbExists = fs.existsSync(dbPath)
+  if (!dbExists) {
+    createFile(dbPath)
+  }
 
   // Use JSON file for storage
   const adapter = new FileSync<DatabaseSchema>(dbPath)
