@@ -56,8 +56,8 @@ app.use(async (req, res, next) => {
 
 const router_ = Router()
 router_.use('/api-docs', swaggerUi.serve)
-router_.use('/api/maps', maps)
-router_.use('/api/guides', arrive)
+router_.use(maps)
+router_.use(arrive)
 
 // '/api/gilberts'
 router_.use(gilbertsRouter)

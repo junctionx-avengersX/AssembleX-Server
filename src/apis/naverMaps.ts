@@ -43,7 +43,7 @@ async function getCoordinate(address: string): Promise<CoordinateRes> {
   return coordinate
 }
 
-async function getAddress(query: string) {
+async function getAddress(query) {
   const url = `https://map.naver.com/v5/api/instantSearch?lang=ko&caller=pcweb&types=place,address,bus&coords=37.526575025997396,127.10793256759645&query=${encodeURI(
     query,
   )}`
