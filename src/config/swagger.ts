@@ -16,7 +16,7 @@ const options = {
       },
     ],
   },
-  apis: ['./src/models/*.ts', './src/routes/*.ts', './@types/*.ts'],
+  apis: ['./src/models/*.ts', './src/routes/*.ts', './src/swagger/*.yml', './@types/*.ts'],
 }
 
 export default options
