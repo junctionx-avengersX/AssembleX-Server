@@ -61,8 +61,8 @@ components:
         - name
         - profileUrl
         - rating
-        - guideCount
         - cost
+        - introduction
       properties:
         id:
           type: string
@@ -70,6 +70,11 @@ components:
           type: string
         profileUrl:
           type: string
+        introduction:
+          type: string
+        volunteerCount:
+          type: integer
+          minimum: 0
         guideCount:
           type: integer
           minimum: 0
@@ -92,24 +97,13 @@ components:
         rating: 1
         delay: 2.1
         cost: 2800
+        volunteerCount: 6
         guideCount: 16
+        introduction: We're going safely to our destination together.
     Gilberts:
       type: array
       items:
         $ref: '#/components/schemas/Gilbert'
-    BadRequest:
-      type: object
-      required:
-        - error
-        - message
-      properties:
-        error:
-          type: boolean
-        message:
-          type: string
-      example:
-        error: true
-        message: reserved_time should be date string
     Transportation:
       type: string
       enum:

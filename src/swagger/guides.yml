@@ -1,0 +1,29 @@
+components:
+  tags:
+  name: Guide
+  schemas:
+    Guide:
+      type: object
+      required:
+        - id
+        - status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - START
+            - WAIT
+            - ARRIVE
+            - CANCEL
+      example:
+        id: 05be3aa9-8b05-4cc9-8fa1-15fa6c980238
+        status: START
+    GuideStatus:
+      type: string
+      enum:
+        - START
+        - WAIT
+        - ARRIVE
+        - CANCEL

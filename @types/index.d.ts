@@ -32,25 +32,31 @@ interface User {
   profileUrl: string
 }
 
-/**
- * @swagger
- *  components:
- *    schemas:
- *      Gilbert:
- *        type: object
- *        required:
- *          - name
- *          - email
- *        properties:
- *          rating:
- *            type: number
- *        example:
- *           id: something like id
- *           name: byunghak
- *           profileUrl: https://avatars.githubusercontent.com/u/84581726?s=200&v=4
- *           rating: 5
- */
 interface Gilbert extends User {
   rating: number
-  guideCount: number
+  guideCount?: number
+  volunteerCount?: number
+  introduction: string
+  verified: boolean
+}
+
+interface GuideStep {
+  base: string
+  destination: string
+  estimatedTime: string // hour and minutes
+  transportation: Transportation
+  isPassed: boolean
+}
+
+interface Guide {
+  id: string
+  status: GuideStatus
+  guideSteps?: GuideStep[]
+  currentStep?: GuideStep
+  arrivedAt?: Date
+}
+
+interface Match {
+  status: MatchStatus
+  estimatedTime: string // hour and minutes
 }

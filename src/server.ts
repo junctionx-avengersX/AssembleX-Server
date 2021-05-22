@@ -1,3 +1,4 @@
+import * as faker from 'faker'
 import express, { Router } from 'express'
 import { errors } from 'celebrate'
 import cors from 'cors'
@@ -5,10 +6,12 @@ import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import options from './config/swagger'
 
-import hello from './routes/hello'
 import maps from './routes/map'
 import gilbertsRouter from './routes/gilberts'
+import guidesRouter from './routes/guides'
+import matchesRouter from './routes/matches'
 import { initDb } from './db/init'
+import { UserType } from './db/schema'
 
 const app = express()
 
@@ -24,19 +27,40 @@ app.use(
 app.set('port', process.env.PORT || 3000)
 
 // add 'db' instance to request context, so use anywhere in router
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   const db = initDb()
+  const fakeId = faker.datatype.uuid()
+  // TODO: implement login with jwt
+  await db
+    .get('users')
+    .push({
+      id: fakeId,
+      name: 'lover',
+      userType: UserType.NORMAL,
+      profileUrl: 'https://cdn.fakercloud.com/avatars/okandungel_128.jpg',
+    })
+    .write()
+
+  const user = db.get('users').find({ id: fakeId }).value()
   req.db = db
+  req.context = {
+    // viewer means 'current login user'
+    viewerId: user.id,
+    db,
+  }
   next()
 })
 
 const router_ = Router()
 router_.use('/api-docs', swaggerUi.serve)
-router_.use(hello)
-router_.use('/api/maps', maps)
+router_.use(maps)
 
 // '/api/gilberts'
 router_.use(gilbertsRouter)
+// '/api/matched'
+router_.use(matchesRouter)
+// '/api/guides'
+router_.use(guidesRouter)
 
 app.use(router_)
 app.use(errors())
