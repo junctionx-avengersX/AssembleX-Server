@@ -1,4 +1,4 @@
-import getGilberts, { GetGilbertsInput } from '../services/getGilberts'
+import getGilberts, { GetGilbertsInput } from '../services/gilberts/getGilberts'
 import { Router, Request, Response } from 'express'
 import { celebrate, Joi, Segments } from 'celebrate'
 
