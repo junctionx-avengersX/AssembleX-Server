@@ -13,11 +13,6 @@ paths:
             type: string
           required: true
         - in: path
-          name: reserved_time
-          schema:
-            type: string
-          description: must be datetime string ex) Sat May 22 2021 13:05:41
-        - in: path
           name: transportations
           type: array
           items:
@@ -29,6 +24,16 @@ paths:
               - TAXI
           required: true
           description: refer Transportation enum ex) [BUS, SUBWAY]
+        - in: path
+          name: reserved_time
+          schema:
+            type: string
+          description: must be datetime string ex) Sat May 22 2021 13:05:41
+        - in: path
+          name: max_cost
+          schema:
+            type: integer
+          description: gilbert can charge cost by max_cost
       summary: Get Gilberts
       tags: [Gilbert]
       responses:
@@ -56,6 +61,7 @@ components:
         - name
         - profileUrl
         - rating
+        - cost
       properties:
         id:
           type: string
@@ -72,12 +78,16 @@ components:
           format: float
           minimum: 0
           maximum: 3
+        cost:
+          type: integer
+          minimum: 0
       example:
         id: 3cd2696f-26c7-4e3e-b39f-47e7c65a0cee
         name: Favian Volkman
         profileUrl: https://cdn.fakercloud.com/avatars/sweetdelisa_128.jpg
         rating: 1
         delay: 2.1
+        cost: 2800
     Gilberts:
       type: array
       items:

@@ -5,15 +5,18 @@ export interface GetGilbertsInput {
   destination: string
   transportations: Transportation[]
   reservedTime?: Date
+  maxCost?: number
 }
 
 interface GilbertUser extends Gilbert {
   delay: number
+  cost: number
 }
 
 const FAKE_GILBERTS_COUNT = 10
+const DEFAULT_MAX_COST = 3000
 
-const getGilberts = (_input: GetGilbertsInput): GilbertUser[] => {
+const getGilberts = (input: GetGilbertsInput): GilbertUser[] => {
   const gilberts: GilbertUser[] = []
   for (let idx = 0; idx < FAKE_GILBERTS_COUNT; idx++) {
     gilberts.push({
@@ -22,6 +25,11 @@ const getGilberts = (_input: GetGilbertsInput): GilbertUser[] => {
       profileUrl: faker.image.avatar(),
       rating: faker.datatype.number(5),
       delay: faker.datatype.number({ min: 0, max: 3, precision: 0.01 }), // delayed time
+      cost: faker.datatype.number({
+        min: 0,
+        max: input.maxCost ?? DEFAULT_MAX_COST,
+        precision: 100,
+      }),
     })
   }
 

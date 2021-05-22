@@ -10,14 +10,16 @@ router.get(
     [Segments.BODY]: Joi.object().keys({
       base: Joi.string().required(),
       destination: Joi.string().required(),
-      reserved_time: Joi.string(),
       transportations: Joi.array().required(),
+      reserved_time: Joi.string(),
+      max_cost: Joi.number(),
     }),
   }),
   (req: Request, res: Response) => {
     res.header('Content-Type', 'application/json')
 
-    const { reserved_time, ...args } = req.query
+    const { reserved_time, max_cost, ...args } = req.query
+    const maxCost = max_cost as string | undefined
     const reservedTime = reserved_time as string | undefined
     if (reservedTime && isNaN(Date.parse(reservedTime))) {
       res
@@ -27,6 +29,7 @@ router.get(
     }
 
     const gilbertInput = {
+      ...(maxCost && { maxCost: parseInt(maxCost, 10) }),
       ...(reservedTime && { reservedTime: new Date(reservedTime) }),
       ...args,
     } as GetGilbertsInput
