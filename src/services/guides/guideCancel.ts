@@ -1,3 +1,4 @@
+import { Context } from 'context'
 import { GuideStatus } from './types'
 
 interface CancelGuideReturn {
@@ -5,11 +6,22 @@ interface CancelGuideReturn {
   status: GuideStatus
 }
 
-const cancelGuide = (guideId: string): CancelGuideReturn => {
+const cancelGuideByMatchId = async (
+  matchId: string,
+  context: Context,
+): Promise<CancelGuideReturn> => {
+  await context.db
+    .get('guides')
+    .find({ matchId: matchId })
+    .assign({ status: GuideStatus.CANCEL })
+    .write()
+
+  const guide = context.db.get('guides').find({ matchId: matchId }).value()
+
   return {
-    id: guideId,
-    status: GuideStatus.CANCEL,
+    id: guide.id,
+    status: guide.status,
   }
 }
 
-export default cancelGuide
+export default cancelGuideByMatchId

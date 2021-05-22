@@ -1,11 +1,6 @@
 import * as faker from 'faker'
-import { Context } from 'types'
-
-export enum MatchStatus {
-  WAITING = 'WAITING',
-  CANCELED = 'CANCELED',
-  MATCHED = 'MATCHED',
-}
+import { Context } from '../../context'
+import { MatchStatus } from './types'
 
 export interface MatchCreateInput {
   gilbertId: string
@@ -23,7 +18,7 @@ const createMatch = async (
 ): Promise<MatchCreateReturn> => {
   const { viewerId, db } = context
 
-  const status = MatchStatus.WAITING
+  const status = MatchStatus.WAIT
   const estimatedTime = '10min' // TODO: Fix hard coding
   await db
     .get('matches')

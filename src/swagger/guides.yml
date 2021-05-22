@@ -1,109 +1,28 @@
-paths:
-  /api/guides/{guide_id}/cancel:
-    post:
-      parameters:
-        - in: path
-          name: guide_id
-          schema:
-            type: string
-          required: true
-      tags: [Guide]
-      responses:
-        '200':
-          description: cancel guide
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Guide'
-        '400':
-          description: missing params
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequest'
-  /api/guides/ready:
-    post:
-      parameters:
-        - in: path
-          name: gilbert_id
-          schema:
-            type: string
-          required: true
-        - in: path
-          name: base
-          schema:
-            type: string
-          required: true
-        - in: path
-          name: destination
-          schema:
-            type: string
-          required: true
-        - in: path
-          name: transportations
-          type: array
-          items:
-            type: string
-            enum:
-              - BUS
-              - SUBWAY
-              - WALK
-              - TAXI
-          required: true
-          description: refer Transportation enum ex) [BUS, SUBWAY]
-        - in: path
-          name: reserved_time
-          schema:
-            type: string
-          description: must be datetime string ex) Sat May 22 2021 13:05:41
-      summary: Create Guide
-      tags: [Guide]
-      responses:
-        '200':
-          description: success to start guide!
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Guide'
-        '400':
-          description: missing params or got wrong parameter type
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequest'
 components:
   tags:
   name: Guide
   schemas:
     Guide:
-      # type: object
+      type: object
       required:
         - id
         - status
-        - viewerId
-        - gilbertId
       properties:
         id:
-          type: string
-        gilbertId:
-          type: string
-        viewerId:
           type: string
         status:
           type: string
           enum:
-            - READY
             - START
             - WAIT
             - ARRIVE
             - CANCEL
       example:
         id: 05be3aa9-8b05-4cc9-8fa1-15fa6c980238
-        status: READY
+        status: START
     GuideStatus:
       type: string
       enum:
-        - READY
         - START
         - WAIT
         - ARRIVE

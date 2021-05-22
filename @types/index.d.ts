@@ -51,8 +51,8 @@ interface GuideStep {
 interface Guide {
   id: string
   status: GuideStatus
-  guideSteps: GuideStep[]
-  currentStep: GuideStep
+  guideSteps?: GuideStep[]
+  currentStep?: GuideStep
   arrivedAt?: Date
 }
 

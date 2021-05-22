@@ -1,0 +1,121 @@
+paths:
+  /api/guides/ready:
+    post:
+      parameters:
+        - in: path
+          name: gilbert_id
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: base
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: destination
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: transportations
+          type: array
+          items:
+            type: string
+            enum:
+              - BUS
+              - SUBWAY
+              - WALK
+              - TAXI
+          required: true
+          description: refer Transportation enum ex) [BUS, SUBWAY]
+        - in: path
+          name: reserved_time
+          schema:
+            type: string
+          description: must be datetime string ex) Sat May 22 2021 13:05:41
+      summary: Wait match
+      tags: [Match]
+      responses:
+        '200':
+          description: start to wait match!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+        '400':
+          description: missing params or got wrong parameter type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+  /api/matches/{match_id}/cancel:
+    post:
+      parameters:
+        - in: path
+          name: match_id
+          schema:
+            type: string
+          required: true
+      tags: [Match]
+      responses:
+        '200':
+          description: cancel match
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchCancel'
+        '400':
+          description: missing params
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+components:
+  tags:
+  name: Match
+  schemas:
+    Match:
+      type: object
+      required:
+        - id
+        - status
+        - estimatedTime
+      properties:
+        id:
+          type: string
+        estimatedTime:
+          type: string
+        status:
+          type: string
+          enum:
+            - WAIT
+            - CANCEL
+            - MATCH
+      example:
+        id: a80bb34a-8e5c-4bad-bbde-26126f415abe
+        status: WAIT
+        estimatedTime: 10min
+    MatchCancel:
+      type: object
+      required:
+        - id
+        - status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - WAIT
+            - CANCEL
+            - MATCH
+      example:
+        id: a80bb34a-8e5c-4bad-bbde-26126f415abe
+        status: CANCEL
+    MatchStatus:
+      type: string
+      enum:
+        - WAIT
+        - CANCEL
+        - MATCH
