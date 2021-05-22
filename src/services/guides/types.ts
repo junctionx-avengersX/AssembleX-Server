@@ -4,3 +4,10 @@ export enum GuideStatus {
   ARRIVE = 'ARRIVE',
   CANCEL = 'CANCEL',
 }
+
+export enum Transportation {
+  BUS = 'BUS',
+  TAXI = 'TAXI',
+  SUBWAY = 'SUBWAY',
+  WALK = 'WALK',
+}

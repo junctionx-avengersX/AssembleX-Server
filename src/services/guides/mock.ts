@@ -1,5 +1,6 @@
 import * as faker from 'faker'
 import { Context } from 'context'
+import { Transportation } from './types'
 
 // 우편번호(zipcode) - 주(state) - 시(city,town) - 길(steet, avenue..)- 번지(no)
 export const generateSteps = async (

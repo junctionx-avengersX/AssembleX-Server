@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express'
 import { celebrate, Joi, Segments } from 'celebrate'
 import startGuide from '../services/guides/guideStart'
+import succeedMatch from '../services/matches/matchSucceed'
 
 const router = Router()
 
@@ -15,9 +16,9 @@ router.post(
     res.header('Content-Type', 'application/json')
     const { guide_id: guideId } = req.params
     const guide = await startGuide(guideId, req.context)
+    await succeedMatch(guide.matchId, req.context)
     const accumulated: number = guide.guideSteps.reduce(
-      // @ts-ignore
-      (prev, curr) => prev.estimatedTime.time + curr.estimatedTime.time,
+      (prev, curr) => prev + curr.estimatedTime?.time,
       0,
     )
 
