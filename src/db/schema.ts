@@ -27,7 +27,7 @@ interface GuideSchema extends Guide {
   createdAt: Date
 }
 
-// Add new table to schema and don't forget add data to data/db.json!
+// Add new table to schema and don't forget add data to db/data.json!
 export interface DatabaseSchema {
   users: UserSchema[]
   gilberts: GilbertSchema[]

@@ -13,21 +13,25 @@
 - function: {behavior}{Resource}
   - ex) `const createGilbert = () => {}`
 
-## lowdb
+## 🧚‍♀️ lowdb
 
-- you can find sample code in hello router
+- add schema type to db/schema.ts
+- add schema name to tableNames in db/init.ts
+- examples
+
+if you want get value, then use `value()` at last.
+if you want mutate value, then use `write` at last with `async-await`.
 
 ```
-// Set some defaults
-db.defaults({ posts: [], user: {} })
-  .write()
+// get
+db.get('users').find({id: userId}).value()
+db.get('users').find({ name }).value()
 
-// Add a post
-db.get('posts')
-  .push({ id: 1, title: 'lowdb is awesome'})
-  .write()
+// create
+await db.get('users').push({ id: 'test-id', name:'tester'}).write()
 
-// Set a user name using Lodash shorthand syntax
-db.set('user.name', 'typicode')
-  .write()
+// update
+await db.get('users').find({id: userId}).assign({ name: 'what'}).write()
 ```
+
+- data.json will be initialized whenever you start server
