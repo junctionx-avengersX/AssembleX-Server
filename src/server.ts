@@ -4,9 +4,11 @@ import cors from 'cors'
 import swaggerJsdoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
 import options from './config/swagger'
+import bodyParser from 'body-parser'
 
 import hello from './routes/hello'
 import maps from './routes/map'
+import arrive from './routes/arrive'
 import gilbertsRouter from './routes/gilberts'
 import { initDb } from './db/init'
 
@@ -15,6 +17,7 @@ const app = express()
 const specs = swaggerJsdoc(options)
 
 app.use(cors())
+app.use(bodyParser())
 app.use(
   '/api-docs',
   swaggerUi.serve,
@@ -34,6 +37,7 @@ const router_ = Router()
 router_.use('/api-docs', swaggerUi.serve)
 router_.use(hello)
 router_.use('/api/maps', maps)
+router_.use('/api/guides', arrive)
 
 // '/api/gilberts'
 router_.use(gilbertsRouter)
