@@ -32,6 +32,9 @@ components:
         - id
         - status
         - steps
+        - base
+        - destination
+        - totalEstimatedTime
       properties:
         id:
           type: string
@@ -56,6 +59,30 @@ components:
               type: string
             destination:
               type: string
+            steps:
+              type: array
+              items:
+                type: object
+                properties:
+                  base:
+                    type: string
+                  destination:
+                    type: string
+                  transportation:
+                    type: string
+                    enum:
+                      - BUS
+                      - TAXI
+                      - WALK
+                      - SUBWAY
+                  estimatedTime:
+                    time:
+                      type: number
+                    unit:
+                      type: string
+                      enum:
+                        - min
+                        - hour
             transportation:
               type: string
               enum:
@@ -75,6 +102,30 @@ components:
       example:
         id: 05be3aa9-8b05-4cc9-8fa1-15fa6c980238
         status: START
+        base: Towson, Wade Hollow
+        destination: Towson, Adah Manors
+        totalEstimatedTime:
+          time: 26
+          unit: min
+        steps:
+          - base: Towson, Wade Hollow
+            destination: Meghanfurt, David Fork
+            transportation: TAXI
+            estimatedTime:
+              time: 16
+              unit: min
+          - base: Meghanfurt, David Fork
+            destination: Meghanfurt, Nyah Track
+            transportation: WALK
+            estimatedTime:
+              time: 6
+              unit: min
+          - base: Meghanfurt, Nyah Track
+            destination: Towson, Adah Manors
+            transportation: WALK
+            estimatedTime:
+              time: 4
+              unit: min
     GuideStatus:
       type: string
       enum:
