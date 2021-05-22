@@ -61,6 +61,7 @@ components:
         - name
         - profileUrl
         - rating
+        - guideCount
         - cost
       properties:
         id:
@@ -69,6 +70,9 @@ components:
           type: string
         profileUrl:
           type: string
+        guideCount:
+          type: integer
+          minimum: 0
         rating:
           type: integer
           minimum: 0
@@ -88,6 +92,7 @@ components:
         rating: 1
         delay: 2.1
         cost: 2800
+        guideCount: 16
     Gilberts:
       type: array
       items:
