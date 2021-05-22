@@ -4,7 +4,7 @@ import swaggerUi from 'swagger-ui-express'
 import options from './config/swagger'
 
 import hello from './routes/hello'
-import getGilbertsHandler from './routes/gilberts'
+import gilbertsRouter from './routes/gilberts'
 import { errors } from 'celebrate'
 
 const app = express()
@@ -24,7 +24,7 @@ router_.use('/api-docs', swaggerUi.serve)
 router_.use('/api/hello', hello)
 
 // '/api/gilberts'
-router_.use(getGilbertsHandler)
+router_.use(gilbertsRouter)
 
 app.use(router_)
 app.use(errors())
