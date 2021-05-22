@@ -55,8 +55,9 @@ router.get('/:address', async (req, res: Response) => {
  *        "200":
  *          description: A Maps schema
  *          content:
- *            application/json
- *
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Place'
  */
 router.get('/search/:query', async (req, res: Response) => {
   const res_ = await getAddress(req.params.query)
