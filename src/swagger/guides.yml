@@ -1,8 +1,32 @@
+paths:
+  /api/guides/start:
+    post:
+      parameters:
+        - in: path
+          name: guide_id
+          schema:
+            type: string
+          required: true
+      summary: start guide
+      tags: [Guide]
+      responses:
+        '200':
+          description: start to guide!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuideStart'
+        '400':
+          description: missing params or got wrong parameter type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
 components:
   tags:
   name: Guide
   schemas:
-    Guide:
+    GuideStart:
       type: object
       required:
         - id

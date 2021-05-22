@@ -45,8 +45,9 @@ router.post(
       ...args,
       ...(reservedTime && { reservedTime: new Date(reservedTime) }),
     } as CreateGuideInput
-    await createGuide(createGuideInput, req.context)
-    res.json(match)
+    const guide = await createGuide(createGuideInput, req.context)
+    const response = { match, guide: { id: guide.id } }
+    res.json(response)
   },
 )
 
