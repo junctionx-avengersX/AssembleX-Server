@@ -7,10 +7,10 @@ const router: Router = Router()
 router.get(
   '/api/gilberts',
   celebrate({
-    [Segments.BODY]: Joi.object().keys({
+    [Segments.QUERY]: Joi.object().keys({
       base: Joi.string().required(),
       destination: Joi.string().required(),
-      transportations: Joi.array().required(),
+      transportations: Joi.string().required(),
       reserved_time: Joi.string(),
       max_cost: Joi.number(),
     }),
