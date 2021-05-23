@@ -32,6 +32,9 @@ await db.get('users').push({ id: 'test-id', name:'tester'}).write()
 
 // update
 await db.get('users').find({id: userId}).assign({ name: 'what'}).write()
+
+// delete
+await db.get('users').remove({id: userId}).write()
 ```
 
 - data.json will be initialized whenever you start server

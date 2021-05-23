@@ -45,8 +45,9 @@ router.post(
       ...args,
       ...(reservedTime && { reservedTime: new Date(reservedTime) }),
     } as CreateGuideInput
-    await createGuide(createGuideInput, req.context)
-    res.json(match)
+    const guide = await createGuide(createGuideInput, req.context)
+    const response = { match, guide: { id: guide.id } }
+    res.json(response)
   },
 )
 
@@ -58,6 +59,7 @@ router.post(
     }),
   }),
   async (req: Request, res: Response) => {
+    res.header('Content-Type', 'application/json')
     const match = await cancelMatch(req.params.match_id, req.context)
     await cancelGuideByMatchId(match.id, req.context)
     res.json(match)

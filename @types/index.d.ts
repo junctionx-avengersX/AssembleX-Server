@@ -40,17 +40,24 @@ interface Gilbert extends User {
   verified: boolean
 }
 
+interface TimeUnit {
+  time: number
+  unit: 'min' | 'hour'
+}
+
 interface GuideStep {
   base: string
   destination: string
-  estimatedTime: string // hour and minutes
+  estimatedTime: TimeUnit // hour and minutes
   transportation: Transportation
-  isPassed: boolean
 }
 
 interface Guide {
   id: string
+  base: string
+  destination: string
   status: GuideStatus
+  transportations: Transportation[]
   guideSteps?: GuideStep[]
   currentStep?: GuideStep
   arrivedAt?: Date
@@ -58,5 +65,5 @@ interface Guide {
 
 interface Match {
   status: MatchStatus
-  estimatedTime: string // hour and minutes
+  estimatedTime: TimeUnit // hour and minutes
 }

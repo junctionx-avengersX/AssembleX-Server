@@ -1,5 +1,5 @@
 paths:
-  /api/guides/ready:
+  /api/matches/ready:
     post:
       parameters:
         - in: path
@@ -42,7 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Match'
+                $ref: '#/components/schemas/MatchReady'
         '400':
           description: missing params or got wrong parameter type
           content:
@@ -75,27 +75,44 @@ components:
   tags:
   name: Match
   schemas:
-    Match:
+    MatchReady:
       type: object
       required:
-        - id
-        - status
-        - estimatedTime
+        - match
+        - guide
       properties:
-        id:
-          type: string
-        estimatedTime:
-          type: string
-        status:
-          type: string
-          enum:
-            - WAIT
-            - CANCEL
-            - MATCH
+        match:
+          type: object
+          properties:
+            id:
+              type: string
+            estimatedTime:
+              type: object
+              properties:
+                time:
+                  type: number
+                unit:
+                  type: string
+                  enum:
+                    - min
+            status:
+              type: string
+              enum:
+                - WAIT
+                - CANCEL
+                - MATCH
+        guide:
+          type: object
+          properties:
+            id:
+              type: string
       example:
-        id: a80bb34a-8e5c-4bad-bbde-26126f415abe
-        status: WAIT
-        estimatedTime: 10min
+        match:
+          id: a80bb34a-8e5c-4bad-bbde-26126f415abe
+          status: WAIT
+          estimatedTime: 10min
+        guide:
+          id: 05be3aa9-8b05-4cc9-8fa1-15fa6c980238
     MatchCancel:
       type: object
       required:

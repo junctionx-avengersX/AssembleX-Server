@@ -12,7 +12,7 @@ export interface CreateGuideInput {
 }
 
 const createGuide = async (input: CreateGuideInput, context: Context) => {
-  context.db
+  await context.db
     .get('guides')
     .push({
       id: faker.datatype.uuid(),
@@ -20,11 +20,15 @@ const createGuide = async (input: CreateGuideInput, context: Context) => {
       createdAt: new Date(),
       base: input.base,
       destination: input.destination,
+      transportations: input.transportations,
       viewerId: context.viewerId,
       gilbertId: input.gilbertId,
       matchId: input.matchId,
+      reservedAt: input.reservedTime,
     })
     .write()
+
+  return context.db.get('guides').find({ matchId: input.matchId }).value()
 }
 
 export default createGuide

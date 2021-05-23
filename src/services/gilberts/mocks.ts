@@ -27,7 +27,7 @@ const DEFAULT_MAX_COST = 3000
 
 export const generateGilbert = (input?: GilbertInput) => ({
   id: faker.datatype.uuid(),
-  name: input?.name || `${faker.name.firstName()} ${faker.name.lastName()}`,
+  name: input?.name || faker.name.firstName(),
   profileUrl: input?.profileUrl || faker.image.avatar(),
   rating: input?.rating || faker.datatype.number(5),
   delay: faker.datatype.number({ min: 0, max: 3, precision: 0.01 }), // delayed time

@@ -9,7 +9,7 @@ export interface MatchCreateInput {
 interface MatchCreateReturn {
   id: string
   status: MatchStatus
-  estimatedTime: string
+  estimatedTime: TimeUnit
 }
 
 const createMatch = async (
@@ -19,7 +19,6 @@ const createMatch = async (
   const { viewerId, db } = context
 
   const status = MatchStatus.WAIT
-  const estimatedTime = '10min' // TODO: Fix hard coding
   await db
     .get('matches')
     .push({
@@ -27,7 +26,10 @@ const createMatch = async (
       viewerId,
       gilbertId: input.gilbertId,
       status,
-      estimatedTime,
+      estimatedTime: {
+        time: faker.datatype.number({ min: 2, max: 5, precision: 1 }),
+        unit: 'min',
+      },
     })
     .write()
 
@@ -39,7 +41,10 @@ const createMatch = async (
   return {
     id: match.id,
     status: match.status,
-    estimatedTime: match.estimatedTime,
+    estimatedTime: {
+      time: faker.datatype.number({ min: 2, max: 5, precision: 1 }),
+      unit: 'min',
+    },
   }
 }
 

@@ -1,12 +1,40 @@
+paths:
+  /api/guides/:guide_id/start:
+    post:
+      parameters:
+        - in: path
+          name: guide_id
+          schema:
+            type: string
+          required: true
+      summary: start guide
+      tags: [Guide]
+      responses:
+        '200':
+          description: start to guide!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuideStart'
+        '400':
+          description: got server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
 components:
   tags:
   name: Guide
   schemas:
-    Guide:
+    GuideStart:
       type: object
       required:
         - id
         - status
+        - steps
+        - base
+        - destination
+        - totalEstimatedTime
       properties:
         id:
           type: string
@@ -15,11 +43,89 @@ components:
           enum:
             - START
             - WAIT
-            - ARRIVE
-            - CANCEL
+        totalEstimatedTime:
+          type: object
+          properties:
+            time:
+              type: number
+            unit:
+              enum:
+                - min
+                - hour
+        steps:
+          type: object
+          properties:
+            base:
+              type: string
+            destination:
+              type: string
+            steps:
+              type: array
+              items:
+                type: object
+                properties:
+                  base:
+                    type: string
+                  destination:
+                    type: string
+                  transportation:
+                    type: string
+                    enum:
+                      - BUS
+                      - TAXI
+                      - WALK
+                      - SUBWAY
+                  estimatedTime:
+                    time:
+                      type: number
+                    unit:
+                      type: string
+                      enum:
+                        - min
+                        - hour
+            transportation:
+              type: string
+              enum:
+                - BUS
+                - TAXI
+                - WALK
+                - SUBWAY
+            estimatedTime:
+              type: object
+              properties:
+                time:
+                  type: number
+                unit:
+                  enum:
+                    - min
+                    - hour
       example:
         id: 05be3aa9-8b05-4cc9-8fa1-15fa6c980238
         status: START
+        base: Towson, Wade Hollow
+        destination: Towson, Adah Manors
+        totalEstimatedTime:
+          time: 26
+          unit: min
+        steps:
+          - base: Towson, Wade Hollow
+            destination: Meghanfurt, David Fork
+            transportation: TAXI
+            estimatedTime:
+              time: 16
+              unit: min
+          - base: Meghanfurt, David Fork
+            destination: Meghanfurt, Nyah Track
+            transportation: WALK
+            estimatedTime:
+              time: 6
+              unit: min
+          - base: Meghanfurt, Nyah Track
+            destination: Towson, Adah Manors
+            transportation: WALK
+            estimatedTime:
+              time: 4
+              unit: min
     GuideStatus:
       type: string
       enum:

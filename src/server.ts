@@ -12,6 +12,7 @@ import guidesRouter from './routes/guides'
 import matchesRouter from './routes/matches'
 import { initDb } from './db/init'
 import { UserType } from './db/schema'
+import { VIEWER_NAME } from './constants'
 
 const app = express()
 
@@ -31,17 +32,20 @@ app.use(async (req, res, next) => {
   const db = initDb()
   const fakeId = faker.datatype.uuid()
   // TODO: implement login with jwt
-  await db
-    .get('users')
-    .push({
-      id: fakeId,
-      name: 'lover',
-      userType: UserType.NORMAL,
-      profileUrl: 'https://cdn.fakercloud.com/avatars/okandungel_128.jpg',
-    })
-    .write()
+  let user = db.get('users').find({ name: VIEWER_NAME }).value()
+  if (!user) {
+    await db
+      .get('users')
+      .push({
+        id: fakeId,
+        name: 'viewer',
+        userType: UserType.NORMAL,
+        profileUrl: 'https://cdn.fakercloud.com/avatars/okandungel_128.jpg',
+      })
+      .write()
+    user = db.get('users').find({ id: fakeId }).value()
+  }
 
-  const user = db.get('users').find({ id: fakeId }).value()
   req.db = db
   req.context = {
     // viewer means 'current login user'
